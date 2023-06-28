@@ -40,7 +40,7 @@ jobs:
         git config --global user.email "ignore@examble.com"
     - name: build
       run: |
-        sudo apt remove python
+        sudo apt remove python3.10.6
         python --version
 
 #     - name: Upload APK
