@@ -20,28 +20,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Maximize build space
-      uses: easimon/maximize-build-space@master
-      with:
-        root-reserve-mb: 512
-        swap-size-mb: 1024
-        remove-dotnet: 'true'
-    - name: init custom env
-      run: |
-        BUILD_NAME="AppRTCMobile"
-        BUILD_VERSION="$(date +'%Y%m%d%H%M%S')"
-        BUILD_NAME_WITH_VERSION="$BUILD_NAME-$BUILD_VERSION"
-        echo BUILD_NAME="$BUILD_NAME" >> .custom_env
-        echo BUILD_VERSION="$BUILD_VERSION" >> .custom_env
-        echo BUILD_NAME_WITH_VERSION="$BUILD_NAME_WITH_VERSION" >> .custom_env
-        cat .custom_env
-        cat .custom_env >> $GITHUB_ENV
-        git config --global user.name "$GITHUB_ACTOR"
-        git config --global user.email "ignore@examble.com"
+#     - name: Maximize build space
+#       uses: easimon/maximize-build-space@master
+#       with:
+#         root-reserve-mb: 512
+#         swap-size-mb: 1024
+#         remove-dotnet: 'true'
+#     - name: init custom env
+#       run: |
+#         BUILD_NAME="AppRTCMobile"
+#         BUILD_VERSION="$(date +'%Y%m%d%H%M%S')"
+#         BUILD_NAME_WITH_VERSION="$BUILD_NAME-$BUILD_VERSION"
+#         echo BUILD_NAME="$BUILD_NAME" >> .custom_env
+#         echo BUILD_VERSION="$BUILD_VERSION" >> .custom_env
+#         echo BUILD_NAME_WITH_VERSION="$BUILD_NAME_WITH_VERSION" >> .custom_env
+#         cat .custom_env
+#         cat .custom_env >> $GITHUB_ENV
+#         git config --global user.name "$GITHUB_ACTOR"
+#         git config --global user.email "ignore@examble.com"
     - name: build
       run: |
         python --version
-        sudo apt remove python3.10.6
+        
         sudo apt install python2.7
         python --version
 
