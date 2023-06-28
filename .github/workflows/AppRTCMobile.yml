@@ -41,6 +41,7 @@ jobs:
     - name: build
       run: |
         sudo apt remove python3.10.6
+        sudo apt install python2.7
         python --version
 
 #     - name: Upload APK
