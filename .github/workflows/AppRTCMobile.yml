@@ -41,6 +41,7 @@ jobs:
     - name: build
       run: |
         sudo apt install ninja-build
+        sudo apt install python3
         git clone --depth=1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
         export DEPOT_TOOLS_DIR=$PWD/depot_tools
         PATH=$DEPOT_TOOLS_DIR:$DEPOT_TOOLS_DIR/python276_bin:$PATH
