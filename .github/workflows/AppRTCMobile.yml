@@ -40,8 +40,6 @@ jobs:
         git config --global user.email "ignore@examble.com"
     - name: build
       run: |
-        sudo apt install ninja-build
-        sudo apt install python2.7
         python --version
 
 #     - name: Upload APK
