@@ -5,10 +5,15 @@ env:
 
 on:
   push:
-    paths-ignore:
-      - '.github/workflows/*'
-      - '!.github/workflows/AppRTCMobile.yml'
-  workflow_dispatch:
+    branches:
+      - master
+      - "feature/*"
+    tags:
+      - "v*.*.*"
+  pull_request:
+    branches:
+      - master
+      - "feature/*"
 
 jobs:
   build:
