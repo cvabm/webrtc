@@ -25,6 +25,10 @@ jobs:
       run: |
         python --version
         sudo apt install python2.7
+        sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+        sudo update-alternatives --config python
+
+
         python --version
 #     - name: Maximize build space
 #       uses: easimon/maximize-build-space@master
