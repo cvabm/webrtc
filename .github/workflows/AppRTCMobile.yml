@@ -20,6 +20,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+     - uses: actions/checkout@v3
+     - uses: actions/setup-python@v4
+       with:
+         python-version: '3.10' 
+     - run: python --version
+    
+    
+    
 #     - name: Maximize build space
 #       uses: easimon/maximize-build-space@master
 #       with:
@@ -38,12 +46,10 @@ jobs:
 #         cat .custom_env >> $GITHUB_ENV
 #         git config --global user.name "$GITHUB_ACTOR"
 #         git config --global user.email "ignore@examble.com"
-    - name: build
-      run: |
-        python --version
-        
-        sudo apt install python2.7
-        python --version
+
+#     - name: build
+#       run: |
+#         python --version
 
 #     - name: Upload APK
 #       uses: actions/upload-artifact@master
