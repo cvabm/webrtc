@@ -17,15 +17,15 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.0.4
 
     steps:
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '2.7'
-          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
-        env:
-          AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
+#       - uses: actions/setup-python@v3
+#         with:
+#           python-version: '2.7'
+#           architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+#         env:
+#           AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
     
     
     
@@ -48,9 +48,9 @@ jobs:
 #         git config --global user.name "$GITHUB_ACTOR"
 #         git config --global user.email "ignore@examble.com"
 
-#     - name: build
-#       run: |
-#         python --version
+    - name: build
+      run: |
+        python --version
 
 #     - name: Upload APK
 #       uses: actions/upload-artifact@master
