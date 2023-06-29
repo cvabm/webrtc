@@ -24,6 +24,8 @@ jobs:
     - name: build
       run: |
         python --version
+        sudo apt install python2.7
+        python --version
 #     - name: Maximize build space
 #       uses: easimon/maximize-build-space@master
 #       with:
