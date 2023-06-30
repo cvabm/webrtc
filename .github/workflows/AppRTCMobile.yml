@@ -24,11 +24,7 @@ jobs:
     - name: build
       run: |
         python --version
-        sudo apt install python2.7
-        sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
-        sudo update-alternatives --config python
 
-        python --version
     - name: Maximize build space
       uses: easimon/maximize-build-space@master
       with:
@@ -53,8 +49,11 @@ jobs:
         sudo apt install ninja-build
         git clone --depth=1 https://chromium.googlesource.com/chromium/tools/depot_tools.git
         export DEPOT_TOOLS_DIR=$PWD/depot_tools
-        PATH=$DEPOT_TOOLS_DIR:$DEPOT_TOOLS_DIR/python276_bin:$PATH
+        PATH=$DEPOT_TOOLS_DIR:$DEPOT_TOOLS_DIR/python2-bin:$PATH
         python --version
+        sudo ln -sf /usr/bin/python2 /usr/bin/python
+        python --version        
+        
 
 #     - name: Upload APK
 #       uses: actions/upload-artifact@master
