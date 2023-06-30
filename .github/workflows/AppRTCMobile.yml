@@ -60,7 +60,7 @@ jobs:
         gclient sync
         cd src
         gn gen out/build --args='target_os="android" target_cpu="arm" is_debug=false'
-        sudo ln -sf /usr/bin/python2 /usr/bin/python
+
         python --version
         ninja -C out/build AppRTCMobile
 
