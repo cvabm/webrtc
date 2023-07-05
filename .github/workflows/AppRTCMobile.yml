@@ -59,7 +59,8 @@ jobs:
         echo 'target_os = ["android", "unix"]' >> .gclient
         gclient sync
         cd src
-        gn gen out/build --args='target_os="android"  is_debug=false'
+        gn gen out/build --args='target_os="android" target_cpu="arm64" is_debug=false'
+        ls out/build
         python --version
         ninja -C out/build AppRTCMobile
         python --version
