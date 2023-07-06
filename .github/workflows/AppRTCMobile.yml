@@ -65,22 +65,11 @@ jobs:
         cd src
         gn gen out/Release-arm-v7a --args='target_os="android" target_cpu="arm" is_debug=false rtc_include_tests=false rtc_build_examples=false'
         ninja -C out/Release-arm-v7a
-        gn gen out/Release-arm-v8a --args='target_os="android" target_cpu="arm64" is_debug=false rtc_include_tests=false rtc_build_examples=false'
-        ninja -C out/Release-arm-v8a
         echo "ljg1"
         ls out/Release-arm-v7a
-        echo "ljg2"
-        ls out/Release-arm-v8a
         echo "ljg"
         ls out/Release-arm-v7a/lib.java/sdk/android
-        echo "ljg3"
-        ls out/Release-arm-v8a/lib.java/sdk/android
         echo "ljg4"
-        echo "Current Path: $PWD"
-        echo "Directories:"
-        find . -type d
-        echo "Files:"
-        find . -type f
         
 #     - name: Upload APK
 #       uses: actions/upload-artifact@master
