@@ -1,4 +1,3 @@
-
 name: AppRTCMobile
 env:
     TZ: Asia/Shanghai
@@ -24,7 +23,6 @@ jobs:
     - name: build
       run: |
         python --version
-
     - name: Maximize build space
       uses: easimon/maximize-build-space@master
       with:
