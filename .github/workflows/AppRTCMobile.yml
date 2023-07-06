@@ -49,9 +49,9 @@ jobs:
       run: |
         echo "Current Path: $PWD"
         echo "Directories:"
-        find . -type d
+        find . -type d -print
         echo "Files:"
-        find . -type f
+        find . -type f -print
         
 #     - name: build
 #       run: |
