@@ -81,14 +81,31 @@ jobs:
         echo "Files:"
         find . -type f -print
         
-        
+        mv out/Release-arm-v7a/libjingle_peerconnection_so.so out/Release-arm-v7a/libjingle_peerconnection_so-v7.so
+        mv out/Release-arm-v8a/libjingle_peerconnection_so.so out/Release-arm-v7a/libjingle_peerconnection_so-v8.so
+        mv out/Release-arm-v7a/lib.java/sdk/android/libwebrtc.jar out/Release-arm-v7a/lib.java/sdk/android/libwebrtc-v7.jar
+        mv out/Release-arm-v8a/lib.java/sdk/android/libwebrtc.jar out/Release-arm-v7a/lib.java/sdk/android/libwebrtc-v8.jar
         
 
-#     - name: Upload APK
-#       uses: actions/upload-artifact@master
-#       with:
-#         name: android-build
-#         path: ${{ env.BUILD_NAME_WITH_VERSION }}-android.apk
+
+          
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Folder
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: out/Release-arm-v7a/
+        asset_name: folder
+        asset_content_type: application/zip
+        
 #     - name: create release
 #       id: create_release
 #       uses: actions/create-release@v1
