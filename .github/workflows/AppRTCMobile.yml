@@ -74,29 +74,20 @@ jobs:
         echo "ljg3"
         ls out/Release-arm-v8a/lib.java/sdk/android
         echo "ljg4"
-        echo "Current Path: $PWD"
-        echo "Directories:"
-        find . -type d -print
-        find . -type d
-        echo "Files:"
-        find . -type f -print
-        
+
         mv out/Release-arm-v7a/libjingle_peerconnection_so.so out/Release-arm-v7a/libjingle_peerconnection_so-v7.so
         mv out/Release-arm-v8a/libjingle_peerconnection_so.so out/Release-arm-v7a/libjingle_peerconnection_so-v8.so
         mv out/Release-arm-v7a/lib.java/sdk/android/libwebrtc.jar out/Release-arm-v7a/lib.java/sdk/android/libwebrtc-v7.jar
         mv out/Release-arm-v8a/lib.java/sdk/android/libwebrtc.jar out/Release-arm-v7a/lib.java/sdk/android/libwebrtc-v8.jar
         
-
-
-          
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
+        tag_name: ${{ github.run_number }}
+        release_name: ${{ github.event.repository.name }} v${{ github.run_number }}.${{ github.run_attempt }}    
 
     - name: Upload Folder
       uses: actions/upload-release-asset@v1
