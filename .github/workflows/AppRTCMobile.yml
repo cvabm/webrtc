@@ -49,7 +49,9 @@ jobs:
         sudo update-alternatives --config python
         sudo apt install ninja-build
         git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+        cd depot_tools
         git checkout -b dev 872ac9bd3d35f171a543731bfac1c8597518184e
+        cd ..
         export DEPOT_TOOLS_DIR=$PWD/depot_tools
         PATH=$DEPOT_TOOLS_DIR:$DEPOT_TOOLS_DIR/python2-bin:$PATH
         python --version
