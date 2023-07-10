@@ -73,13 +73,18 @@ jobs:
         ls out/Release-arm-v7a/lib.java/sdk/android
         echo "ljg3"
         ls out/Release-arm-v8a/lib.java/sdk/android
-        echo "ljg4"
+
 
         mv out/Release-arm-v7a/libjingle_peerconnection_so.so out/Release-arm-v7a/libjingle_peerconnection_so-v7.so
         mv out/Release-arm-v8a/libjingle_peerconnection_so.so out/Release-arm-v7a/libjingle_peerconnection_so-v8.so
         mv out/Release-arm-v7a/lib.java/sdk/android/libwebrtc.jar out/Release-arm-v7a/lib.java/sdk/android/libwebrtc-v7.jar
         mv out/Release-arm-v8a/lib.java/sdk/android/libwebrtc.jar out/Release-arm-v7a/lib.java/sdk/android/libwebrtc-v8.jar
-        
+        echo "ljg5"
+        ls out/Release-arm-v7a/
+        echo "ljg6"
+        zip -r webrtc.zip ./out/Release-arm-v7a
+        ls
+        echo "ljg7"
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -93,8 +98,8 @@ jobs:
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: out/Release-arm-v7a/
-        asset_name: folder
+        asset_path: ./webrtc.zip
+        asset_name: webrtc.zip
         asset_content_type: application/zip
         
 #     - name: create release
@@ -117,9 +122,9 @@ jobs:
 #         asset_path: ${{ env.BUILD_NAME_WITH_VERSION }}-android.apk
 #         asset_name: ${{ env.BUILD_NAME_WITH_VERSION }}-android.apk
 #         asset_content_type: application/zip
-#     - name: public release
-#       uses: eregon/publish-release@v1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         release_id: ${{ steps.create_release.outputs.id }}
+    - name: public release
+      uses: eregon/publish-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        release_id: ${{ steps.create_release.outputs.id }}
