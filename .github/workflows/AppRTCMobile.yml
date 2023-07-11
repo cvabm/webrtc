@@ -80,7 +80,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: webrtc
-        path: webrtc.zip
+        path: src/webrtc.zip
   release:
     name: Release APK
     needs: build
