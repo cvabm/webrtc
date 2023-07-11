@@ -1,7 +1,6 @@
 name: AppRTCMobile
 env:
     TZ: Asia/Shanghai
-
 on:
   push:
     branches:
@@ -13,12 +12,9 @@ on:
     branches:
       - hack_dev
       - "feature/*"
-
 jobs:
   build:
     runs-on: ubuntu-latest
-#     container:
-#      image: python:2.7.18-buster
     steps:
     - name: build
       run: |
@@ -60,7 +56,6 @@ jobs:
         echo 'target_os = ["android", "unix"]' >> .gclient
         gclient sync
         cd src
-        
         gn gen out/Release-arm-v7a --args='target_os="android" target_cpu="arm" is_debug=false rtc_include_tests=false rtc_build_examples=false'
         ninja -C out/Release-arm-v7a
         gn gen out/Release-arm-v8a --args='target_os="android" target_cpu="arm64" is_debug=false rtc_include_tests=false rtc_build_examples=false'
@@ -69,13 +64,7 @@ jobs:
         mv out/Release-arm-v8a/libjingle_peerconnection_so.so out/Release-arm-v7a/libjingle_peerconnection_so-v8.so
         mv out/Release-arm-v7a/lib.java/sdk/android/libwebrtc.jar out/Release-arm-v7a/lib.java/sdk/android/libwebrtc-v7.jar
         mv out/Release-arm-v8a/lib.java/sdk/android/libwebrtc.jar out/Release-arm-v7a/lib.java/sdk/android/libwebrtc-v8.jar
-        echo "ljg5"
-        ls out/Release-arm-v7a/
-        echo "ljg6"
         zip -r webrtc.zip ./out/Release-arm-v7a
-        ls
-        echo "Current Path: $PWD"
-        echo "ljg7"
     - name: Upload APK
       uses: actions/upload-artifact@v1
       with:
@@ -112,9 +101,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: src/webrtc.zip
+          asset_path: webrtc.zip
           asset_name: ${{ github.event.repository.name }}  ${{ steps.branch-name.outputs.current_branch }} v${{ github.run_number }}.${{ github.run_attempt }}.apk
           asset_content_type: application/zip
-
-    
-
