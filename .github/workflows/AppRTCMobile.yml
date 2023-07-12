@@ -60,11 +60,15 @@ jobs:
         ninja -C out/Release-arm-v7a
         gn gen out/Release-arm-v8a --args='target_os="android" target_cpu="arm64" is_debug=false rtc_include_tests=false rtc_build_examples=false'
         ninja -C out/Release-arm-v8a
-        mv out/Release-arm-v7a/libjingle_peerconnection_so.so out/Release-arm-v7a/libjingle_peerconnection_so-v7.so
-        mv out/Release-arm-v8a/libjingle_peerconnection_so.so out/Release-arm-v7a/libjingle_peerconnection_so-v8.so
-        mv out/Release-arm-v7a/lib.java/sdk/android/libwebrtc.jar out/Release-arm-v7a/lib.java/sdk/android/libwebrtc-v7.jar
-        mv out/Release-arm-v8a/lib.java/sdk/android/libwebrtc.jar out/Release-arm-v7a/lib.java/sdk/android/libwebrtc-v8.jar
-        zip -r webrtc.zip ./out/Release-arm-v7a
+        mkdir mylibs
+        mv out/Release-arm-v7a/lib.java/sdk/android/libwebrtc.jar mylibs/libwebrtc.jar
+        cd mylibs
+        mkdir armeabi-v7a
+        mkdir arm64-v8a
+        cd ..
+        mv out/Release-arm-v7a/libjingle_peerconnection_so.so mylibs/armeabi-v7a/libjingle_peerconnection_so.so
+        mv out/Release-arm-v8a/libjingle_peerconnection_so.so out/arm64-v8a/libjingle_peerconnection_so.so
+        zip -r webrtc.zip ./mylibs
     - name: Upload APK
       uses: actions/upload-artifact@v1
       with:
